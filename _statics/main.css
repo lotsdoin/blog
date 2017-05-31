@@ -1,0 +1,876 @@
+// CSS can always drive you crazy, fixed width: about 730px -> 768px.
+html {
+    font-family: TIBch, "Classic Grotesque W01", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    max-width: 44em;
+
+    margin: 0 auto;
+
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 120px;
+
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+    color: black;
+    font-size: 100%;
+    line-height: 140%;
+}
+
+p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h2 + p:first-letter {
+    font-size: 145%;
+}
+
+code, code * {
+    white-space: pre;
+    color: #d14;
+    font-family: Monaco, Menlo, Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif, FontAwesome;
+    text-decoration: none;
+　　word-wrap: break-all;
+    overflow: hidden;
+}
+
+p code {
+    padding: 0px 3px 2px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 3px;
+}
+
+li > code, p > code, div > code, body > code {
+    word-wrap:break-word;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+a  > code,
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+h6 > code {
+    border: 1px solid #9ddcff;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+kbd {
+    padding-left: .25rem;
+    padding-right: .25rem;
+    margin-left: .15rem;
+    margin-right: .15rem;
+    font-family: Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif;
+    background: #eee;
+    border-width: 2px 4px 5px 3px;
+    border-style: solid;
+    border-color: #ccc #aaa #888 #bbb;
+}
+
+pre {
+    font-size: 100%;
+    border: 1px dotted gray;
+    background-color: #ececec;
+    color: #1111111;
+    padding: 0.5em;
+    word-wrap: normal;
+    word-break: break-all;
+    white-space: pre;
+    overflow: auto;
+    margin-bottom: 10px;
+    display: block;
+}
+pre.diffed {
+    background-color: white;
+    border: 1px dotted #f8bd0b;
+    font-size: 90%;
+    font-family: Consolas, Inpact, Arial, Hiragino, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif, FontAwesome;
+}
+pre.tzx-bigquote,
+pre.tzx-poem {
+    margin: 0 auto;
+    padding-left: 6em;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+pre.tzx-plain code,
+pre.tzx-poem code,
+pre.tzx-bigquote code {
+    color: black;
+}
+
+code.url {
+    background-color: inherit;
+    box-shadow: none;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+    text-decoration: none;
+    color: blue;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+    font-weight: bold;
+    margin-left: -3px;
+    margin-right: -3px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 0.5em;
+    line-height: 180%;
+    font-family: "TIBch", "Classic Grotesque W01", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+    background: black;
+    padding-bottom: 0.2em;
+    margin: 30px -0.5em 50px -0.5em;
+    border: none;
+    text-align: center;
+}
+
+h2 {
+    border-left: 8px dotted white;
+    font-size: 130%;
+    background: #887ddd;
+}
+
+h3 {
+    border-left: 4px dotted white;
+    font-size: 105%;
+    background: #019fa0;
+}
+
+h4 {
+    border-left: 2px dotted white;
+    font-size: 95%;
+    background: #009f5d;
+}
+
+h5, h6 {
+    border-left: 1px dotted white;
+    font-size: 70%;
+}
+
+h5 { background: #8cc540; }
+h6 { background: #019fde; }
+
+caption {
+    caption-side: top;
+    border: none;
+    font-size:  0.9em;
+    font-style: italic;
+    text-align: center;
+    margin-top:  0.5em;
+    margin-bottom:  0.3em;
+    padding-bottom: 0.2em;
+}
+
+#navigator          { position: fixed; top: 1em; left: 1em; z-index: 1000; }
+#navigator a:hover  { border-bottom: none; }
+#navigator a        { color: #ff8345; }
+
+#footer {
+    // padding: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 5px;
+    color: gray;
+    text-align: center;
+    position: fixed;
+    clear: both;
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .85);
+    margin: auto;
+    width: 44em;
+    bottom: 0px;
+    font-variant: small-caps;
+    border-width: 1px 0px 0px 0px;
+    border-style: solid;
+    border-color: gray;
+    z-index: 10;
+}
+
+#footer:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transition: all 0.5s ease-in-out;
+}
+
+#footer a {
+    font-size: 200%;
+    text-decoration: none;
+}
+
+#footer a:hover {
+}
+
+#footer > p:nth-child(1) {
+  line-height: 0;
+}
+
+.footnoteRef {
+    color: #ff8345;
+    text-decoration: none;
+}
+
+.footnoteRef:hover {
+    color: #ff1244;
+    border: none;
+}
+
+.footnotes:before {
+}
+
+.footnotes > hr {
+}
+
+.footnotes:after {
+}
+
+.footnotes ol li p {
+    line-height: 1.6;
+}
+
+.footnotes ol li span {
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 2px dashed #9f9f9f;
+}
+
+a.tzx-dumb {
+    border: none;
+}
+img.tzx-dumb:hover {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    transform: scale(1);
+    border: none;
+}
+
+a.external {
+    padding-right: 1em;
+}
+
+a.external:after {
+    content: "❏"; // "❖"(winlogo) // "❀"(flower), "☯"(yinyang), "❏"(empty square);
+    padding-left: 0.5em;
+}
+
+// a[href^="http://"]:not([href*="mydomain.com"]):before{ }
+// a { padding-right: 0.1em; }
+a:after { color: lightgray; font-size: 90%; }
+a[href*="wikipedia.org"]:after          { content: "\00a0 \f266"; }
+a[href*="github.com"]:after             { content: "\00a0 \f09b"; }
+a[href*="stackoverflow.com"]:after      { content: "\00a0 \f16c"; }
+a[href$=".pdf"]:after                   { content: "\00a0 \f1c1"; }
+a[href^="mailto:"]:after                { content: "\00a0 \f1d9"; }
+
+h1, h2, h3, h4, h5, h6 { padding-left: 1.0em; padding-right: 0.4em; }
+
+h1:before, h1:after,
+h2:before, h2:after,
+h3:before, h3:after,
+h4:before, h4:after,
+h5:before, h5:after,
+h6:before, h6:after  {
+    color: #9ddcff;
+}
+
+h1:before { content: "「     "; }
+h2:before { content: "//    "; }
+h3:before { content: "///   "; }
+h4:before { content: "////  "; }
+h5:before { content: "///// "; }
+h6:before { content: "//////"; }
+
+h1:after  { content: "     」"; }
+h2:after  { content: "    //"; }
+h3:after  { content: "   ///"; }
+h4:after  { content: "  ////"; }
+h5:after  { content: " /////"; }
+h6:after  { content: "//////"; }
+
+h1.title    { display: none; }
+h2.author   { display: none; }
+h3.date     { display: none; }
+
+div.slogan {
+    margin-top:  50px;
+    margin-bottom:  50px;
+    font-size: 200%;
+    font-variant: small-caps;
+    line-height: 1.2;
+}
+
+blockquote {
+    word-break: break-word;
+    font-weight: 100;
+    line-height: 1.4;
+    margin: 10px 25px 25px 10px;
+    padding: 15px 15px;
+    border-left: 10px solid #eee;
+    border-color: #D6DBDF;
+    background: none repeat scroll 0 0 rgba(102,128,153,.05);
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #AAA;
+}
+
+table th {
+    padding: 5px;
+    border: 1px solid #AAA;
+}
+
+table td {
+    padding: 5px;
+    border: 1px solid #AAA;
+}
+
+tr.head {
+    background: #EEE;
+}
+
+.figure {
+    margin: 0 auto 20px;
+    text-align: center;
+    display: block;
+}
+
+img {
+    transition: transform 0.4s ease;
+    transition: all 0.5s ease-in-out;
+
+    -webkit-transition: -webkit-transform 0.4s ease;
+    -moz-transition: -moz-transform 0.4s ease;
+    -o-transition: -o-transform 0.4s ease;
+    transition: -o-transform 0.4s ease;
+
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+
+    -webkit-transition-delay: initial;
+    -moz-transition-delay: initial;
+    -o-transition-delay: initial;
+    transition-delay: initial;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -transform-style: preserve-3d;
+
+    z-index: 1;
+    max-width: 95%;
+}
+
+.figure img {
+    display: block;
+    max-width: 95%;
+    width: auto\9;
+    width: auto;
+    height: auto;
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.figure img:hover,
+p img:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+p a img:hover {
+    -webkit-transform: scale(1.35);
+    -moz-transform: scale(1.35);
+    -o-transform: scale(1.35);
+    transform: scale(1.35);
+    border: 3px solid rgba(155, 155, 155, 0.5);
+}
+
+.figure .caption {
+    min-width: 20%;
+    max-width: 70%;
+    min-height: 22px;
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: 18px;
+    font-style: italic;
+    color: #999999;
+    line-height: 1.6;
+}
+
+.figure .caption code {
+    border: none;
+    background-color: inherit;
+}
+
+#buckets div {
+    display: inline-block;
+    margin: 5px;
+    border: 1px solid #c2c2c2;
+    border-radius: 0px;
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: #f0f0f0;
+    box-shadow: 1px 1px silver;
+    font-variant: small-caps;
+    transition: all 0.5s ease-in-out;
+}
+#buckets div:hover {
+    border-radius: 8px;
+    background-color: white;
+}
+#buckets div a {
+    text-decoration: none;
+    font-family: Monaco, Menlo, Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#buckets div a:visited {
+    text-decoration: none;
+}
+#buckets div a:after {
+    content: "";
+}
+
+.footnotes {
+    font-size: 70%;
+    line-height: 80%;
+}
+
+.footnotes ol li ol li {
+    line-height: 100%;
+}
+
+#cc {
+    padding-top: 20px;
+    float: right;
+}
+
+#tzxhomepage {
+    position: fixed;
+    clear: none;
+    right: 0px;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.0);
+}
+#tzxhomepage > img:nth-child(1) {
+    opacity: 0.05;
+}
+#tzxhomepage > img:nth-child(1):hover {
+    opacity: 1.0;
+}
+#tzxhomepage:hover {
+    background-color: rgba(255, 255, 255, 1.0);
+    transition: all 1s ease-in-out;
+    display: ;
+}
+
+.posts li {
+    list-style: none;
+    line-height: 200%;
+    color: gray;
+    font-family: Consolas, Inpact, Arial, Hiragino, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.posts li a {
+    margin-left: 20px;
+}
+
+dl dt               { font-size: 130%; padding-top: 1.2em; padding-bottom: 0.6em; }
+dl dl dt            { font-size: 120%; padding-top: 1.1em; padding-bottom: 0.5em; }
+dl dl dl dt         { font-size: 115%; padding-top: 1.0em; padding-bottom: 0.4em; }
+dl dl dl dl dt      { font-size: 110%; padding-top: 0.8em; padding-bottom: 0.3em; }
+
+dl dt:first-letter {
+    font-size: 145%;
+    text-transform: uppercase;
+}
+
+#tzxslogan {
+    color: lightgray;
+}
+.reads > ol > li {
+    list-style: square; !important
+}
+
+// div.reads > ol > li,
+// div.reads > ol > li > a,
+// div.reads > ol > li > dl > dt,
+div.reads > ol > li > dl > dt:nth-child(1) > a:nth-child(1) {
+    white-space: nowrap; !important
+}
+
+iframe {
+    border: none;
+}
+
+iframe.lyrics {
+    border: none;
+    overflow: hidden;
+}
+
+.lyrics ol li {
+    list-style: square; !important
+}
+
+.lyrics ol li dl dd {
+    margin-left: 0px;
+}
+
+* html #tocbox  { position: absolute; }
+#tocbox         { position: fixed; top: 1em; right: 1em; lightgray; z-index: 2000; cursor: cell; max-height: 90%;  overflow-y: auto; }
+#tocboxheader   { position: fixed; right: 1em; color: #ff8345; }
+#tocboxbody {
+    -webkit-box-shadow: 0 0 25px 10px rgba(209, 210, 212, 0.5);
+    -moz-box-shadow: 0 0 25px 10px rgba(209, 210, 212, 0.5);
+    -o-box-shadow: 0 0 25px 10px rgba(209, 210, 212, 0.5);
+    box-shadow: 0 0 25px 10px rgba(209, 210, 212, 0.5);
+    background: rgba(250, 250, 250, 0.95);
+    border-radius: 10px;
+    margin: 2em;
+    padding: 2em;
+}
+
+
+.tzx-tag {
+    /*
+    float: right;
+    clear: both;
+    margin: 0.2em;
+    margin-right: -200px;
+    color: black;
+    */
+}
+
+.tzx-anchor {
+    visibility: hidden;
+}
+
+ul > li                                                   { list-style-type: disc; }
+ul > li > ul > li                                         { list-style-type: circle; }
+ul > li > ul > li > ul > li                               { list-style-type: square; }
+ul > li > ul > li > ul > li > ul >li                      { list-style-type: circle; }
+ul > li > ul > li > ul > li > ul >li > ul > li            { list-style-type: disc; }
+ul > li > ul > li > ul > li > ul >li > ul > li > ul > li  { list-style-type: circle; }
+
+// "❖"(winlogo) // "❀"(flower), "☯"(yinyang), "❏"(empty square);
+
+#showDisqus {
+    font-size: 60%;
+    cursor: pointer;
+}
+#showDisqus {
+    border-radius: 1em;
+    padding: 1em;
+}
+#showDisqus:hover {
+    -webkit-box-shadow: 0 0 25px 10px rgba(155, 155, 155, 0.5);
+    -moz-box-shadow:    0 0 25px 10px rgba(155, 155, 155, 0.5);
+    -o-box-shadow:      0 0 25px 10px rgba(155, 155, 155, 0.5);
+    box-shadow:         0 0 25px 10px rgba(155, 155, 155, 0.5);
+}
+
+.footnotes [id^=fn] {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+[id^=fnref].footnoteRef:target { border: 1px solid #9ddcff; }
+.footnotes [id^=fn]:target {
+    background-color: rgba(0,127,255,0.02);
+    border-right: 5px solid lightgray;
+    border-top:   1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-radius: 1em;
+
+    -webkit-box-shadow: 0 0 25px 10px rgba(155, 155, 155, 0.5);
+    -moz-box-shadow:    0 0 25px 10px rgba(155, 155, 155, 0.5);
+    -o-box-shadow:      0 0 25px 10px rgba(155, 155, 155, 0.5);
+    box-shadow:         0 0 25px 10px rgba(155, 155, 155, 0.5);
+}
+.footnotes [id^=fn]:hover {
+    background-color: rgba(0,127,255,0.05);
+}
+
+.tzx-tags-group {
+    // visibility: hidden;
+    display: none;
+}
+
+.tzx-nav {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid red;
+    text-align: center;
+    width: 60%
+    margin-left: 5em;
+    margin-right: 5em;
+}
+.tzx-nav li.tzx-nav-prev, .tzx-nav li.tzx-nav-next {
+    text-align: center;
+    display: inline-block;
+    list-style: none;
+    width: 25%;
+    border: 1px dashed green;
+}
+.tzx-nav li.tzx-nav-prev {
+  width: 40%;
+  float: left;
+  margin-left: 5em;
+}
+.tzx-nav li.tzx-nav-prev:before {
+  content: "<";
+}
+.tzx-nav li.tzx-nav-next {
+  float: right;
+  margin-right: 5em;
+}
+
+.tzx-tabs ul li a:hover {
+    border-bottom: none;
+}
+
+code.tzx-timestamp { color: gray; }
+
+h1 code.tzx-timestamp,
+h2 code.tzx-timestamp,
+h3 code.tzx-timestamp,
+h4 code.tzx-timestamp,
+h5 code.tzx-timestamp,
+h6 code.tzx-timestamp { color: white; }
+
+.tzx-shy dd { display: none; }
+.tzx-shy dl { cursor: crosshair; }
+.tzx-shy dl:hover dd {
+    display: block;
+}
+
+.tzx-drawer {
+    cursor: crosshair;
+    border: 1px solid #9ddcff;
+}
+.tzx-drawer .tzx-drawer {
+    cursor: cell;
+    border: 1px dashed #9ddcff;
+}
+
+.tzx-drawer-show { display: auto; }
+.tzx-drawer-hide { display: none; }
+.tzx-hide { display: none; }
+.tzx-show { display: auto; border: 1px solid red; }
+
+.tzx-changes-hide { display: none; }
+.tzx-changes-show { display: auto; }
+.tzx-changes      { display: none; }
+
+.tzx-frame {
+    padding: 1em;
+    cursor: crosshair;
+    border: 1px solid lightgray;
+}
+
+.tzx-shake * {
+    -webkit-transform: scale(.9);
+    -moz-transform: scale(.9);
+    -o-transform: scale(.9);
+    transform: scale(.9);
+    -webkit-animation: love .5s infinite linear alternate-reverse;
+    -moz-animation: love .5s infinite linear alternate-reverse;
+    -o-animation: love .5s infinite linear alternate-reverse;
+    animation: love .5s infinite linear alternate-reverse;
+}
+
+.tzx-banner {
+    text-shadow: 4px 3px 0 #1d9d74,9px 8px 0 rgba(0,0,0,0.15);
+    background-color: #157254;
+    color: white;
+    font-size: 80px;
+    line-height: 1;
+}
+
+table {
+    width: 100%;
+}
+
+.banner, .banner * {
+    font-family: 'Calibri','PT Sans', sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 64px;
+}
+
+a.featured {
+    border: 1px solid #9ddcff;
+    border-radius: 3px;
+    padding: 0.2em;
+}
+a.heart:after {
+    color: red;
+    content: " ❤";
+}
+a.todo:after {
+    color: green;
+    content: "♻";
+}
+a.flag:after {
+    color: blue;
+    content: " ⚑";
+}
+
+code.heart:after {
+    color: red;
+    content: "\00a0 ❤";
+}
+code.todo:after {
+    color: green;
+    content: "\00a0 ♻";
+}
+code.flag:after {
+    color: blue;
+    content: "\00a0 ⚑";
+}
+
+code.heart,
+code.flag,
+code.todo {
+    margin: 0.4em;
+    background-color: white;
+    font-weight: bold;
+    padding-right: 0.5em;
+    border: 1px solid #9ddcff;
+    border-radius: 3px;
+}
+
+.pokerface, .pokerface *, a.tzx-header-anchor, code:after, a:after {
+    font-family: Monaco, Menlo, Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif, FontAwesome, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+a.tzx-header-anchor {
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    float: left;
+    width: 0;
+    margin-left: -75px;
+    z-index: 1000;
+    color: rgba(200, 200, 200, .15);
+}
+a.tzx-header-anchor:hover {
+    color: rgba(200, 200, 200, .85);
+}
+
+#copyright {
+    font-size: 70%;
+    margin-top: 5em;
+    text-align: center;
+    font-family: Monaco, Menlo, Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti;
+}
+#copyright a        { text-decoration: none; }
+#copyright a:after  { content: ""; }
+
+img[align='left'], img[align='right'],
+div.figure[align='left'], div.figure[align='right'] {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    clear: both;
+}
+img[align='left'],
+div.figure[align='left'] {
+    padding-right: 1.5em;
+    float: left;
+}
+img[align='right'],
+div.figure[align='right'] {
+    padding-left: 1.5em;
+    float: right;
+}
+
+img.w12 { max-width: 45%; }
+img.w13 { max-width: 30%; }
+img.w14 { max-width: 20%; }
+
+// ditched! 但在我把所有源码里的文件改过来之前，先不要删除这部分。
+.tzx-fright .figure img,
+.tzx-fleft  .figure img {
+    max-width: 50%;
+}
+.tzx-fright {
+    float: right;
+}
+.tzx-fleft {
+    float: left;
+}
+.tzx-fright, .tzx-fleft {
+    clear: both;
+    padding-left: 1em;
+}
+
+.copy {
+    cursor: cell;
+}
+
+html {
+    margin: auto;
+    padding: 2px;
+}
+
+#comments {
+    margin-top: 5em;
+    color: lightgray;
+}
+#comments:hover {
+    color: black;
+}
+
+a.naive {
+    text-decoration: none;
+    border-bottom: none;
+    color: black;
+    cursor: default;
+}
+
+.tzx-tabs > ul > li > a:hover {
+    border-bottom: none;
+}

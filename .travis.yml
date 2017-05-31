@@ -1,0 +1,37 @@
+<<<<<<< HEAD
+language: c
+sudo: required
+
+before_install:
+  - echo 'before install' && pwd && ls
+  - mkdir -p ~/ssh
+  - openssl aes-256-cbc -K $encrypted_9d4fd0d459b1_key -iv $encrypted_9d4fd0d459b1_iv
+  - in id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - ssh-add ~/.ssh/id_rsa
+  - cp ssh_config ~/.ssh/config
+  - git config --global user.email "lotsdoin@gmail.com"
+  - git config --global user.name "lotsdion"
+
+install:
+  - cd ~
+  - wget https://github.com/jgm/pandoc/releases/download/1.17/pandoc-1.17-1-amd64.deb
+  - sudo dpkg -i pandoc*.deb
+  - wget https://github.com/whudoc/statics/raw/master/qrsync.tar.gz
+  - tar xfz qrsync.tar.gz
+  - chmod +x qrsync
+  - sudo cp qrsync /bin
+
+script:
+  - cd ~
+  - git clone https://github.com/lotsdoin/blog.git
+  - cat conf.json.in | sed -e "s/QiNiuAK/$QiNiuAK/" | sed -e "s/QiNiuSK/$QiNiuSK/" > conf.json
+  - make
+  - make sitemap
+  - make qiniu; rm conf.json;
+=======
+before_install:
+  - openssl aes-256-cbc -K $encrypted_9d4fd0d459b1_key -iv $encrypted_9d4fd0d459b1_iv
+  - in id_rsa.enc -out ~\/.ssh/id_rsa -d
+>>>>>>> bdc98a040b1ffe842cb5eb45752f0da988ecc9c5

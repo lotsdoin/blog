@@ -1,0 +1,20 @@
+---
+tzx-cssfile:
+  - jquery-ui.css
+  - font-awesome.min.css
+  - main.css
+tzx-jsfile:
+  - jquery.min.js
+  - jquery-ui.min.js
+  - lazyload.min.js
+  - egg.min.js
+  - moment.min.js
+  - clipboard.min.js
+  - main.js
+
+# tzx-before-after:
+tzx-before-after:
+tzx-footer:
+notes:
+    $("img").lazyload();
+...
