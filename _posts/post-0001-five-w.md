@@ -61,7 +61,8 @@ What's the huge trouble?
 List
 :   * 见识
     * 环境(心里，外部)
-
+    * 压力
+    * 激情
 
 
 
