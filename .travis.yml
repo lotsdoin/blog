@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 language: c
 sudo: required
 
@@ -30,8 +29,3 @@ script:
   - make
   - make sitemap
   - make qiniu; rm conf.json;
-=======
-before_install:
-  - openssl aes-256-cbc -K $encrypted_9d4fd0d459b1_key -iv $encrypted_9d4fd0d459b1_iv
-  - in id_rsa.enc -out ~\/.ssh/id_rsa -d
->>>>>>> bdc98a040b1ffe842cb5eb45752f0da988ecc9c5
