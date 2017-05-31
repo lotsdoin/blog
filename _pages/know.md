@@ -6,6 +6,32 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1496239077`{.tzx-timestamp} Install travis
+```sh
+root@lotsd:~# gem install travis
+Building native extensions.  This could take a while...
+ERROR:  Error installing travis:
+        ERROR: Failed to build gem native extension.
+
+    current directory: /var/lib/gems/2.3.0/gems/ffi-1.9.18/ext/ffi_c
+/usr/bin/ruby2.3 -r ./siteconf20170531-34-nj8hk7.rb extconf.rb
+mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+
+extconf failed, exit code 1
+
+Gem files will remain installed in /var/lib/gems/2.3.0/gems/ffi-1.9.18 for inspection.
+Results logged to /var/lib/gems/2.3.0/extensions/x86_64-linux/2.3.0/ffi-1.9.18/gem_make.out
+
+root@lotsd:~# apt-get install ruby-dev # It can fix
+```
+
+## `1496230157`{.tzx-timestamp} Github pages DNS
+```sh
+$ dig YOUT-USERNAME.github.io +noall +answer
+> YOUR-USERNAME.github.io 3600    IN  A  199.27.XX.XXX
+```
+添加 A 记录解析，主机纪录 www 记录值 199.27.XX.XXX
+
 ## `1496135688`{.tzx-timestamp} Time Zoon
 
 Time Standards

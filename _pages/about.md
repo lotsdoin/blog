@@ -10,9 +10,10 @@ tags:
 About | 关于
 ============
 
-Lots Doin:
 
--   个人主页: [lotsdoin.me](http://lotsdoin.me)
+Lots Doin:
+<div align="right">[![Build Status](https://www.travis-ci.org/lotsdoin/blog.svg?branch=master)](https://www.travis-ci.org/lotsdoin/blog)</div>
+-   个人主页: [lotsdoin.me](http://www.lotsdoin.me)
 -   Github: [lotsdoin](https://github.com/lotsdoin)
 -   Gmail: [lotsdoin@gmail.com](lotsdoin@gmail.com)
 
