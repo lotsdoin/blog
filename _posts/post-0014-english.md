@@ -41,3 +41,8 @@ This work is licensed under the Creative Commons Attribution-Noncommercial 2.5 C
 
 本作品采用知识共享组织署名-非商业性使用 2.5 中国大陆许可协议进行授权。查看本许可协议的复制件，请访问。 
 
+Sentence
+--------
+
+* There are one hundred ways to fix a problem. However,the ultimate solution is, don't give it any chance to happen.
+
