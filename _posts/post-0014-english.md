@@ -10,6 +10,18 @@ English
 CET 4
 -----
 
+Cheongsam is originated from the Manchu women's national costume. With the integration 
+of Manchu and Han, cheongsam is gradually accepted by the Han women and innovated afterwards.
+The shape of cheongsam fits women's body welll and the line of it is simple, which makes the
+dress look beautiful and elegant.According to the changes of the seasons and the needs and
+preferences of different wearers, cheongsam can be made either ong or short. Moreover, different
+styles can be exhibited due to different choices of materials. Nowadays, cheongsam is loved not
+only by the majority of women of our country, but also by Western women of all ages. With its 
+strong ethnic style, cheongsam refects the beauty of traditional Chinese costume, and is hailed
+as the representative of "Oriental Dress for Women" by international fashion industry.
+
+![English explaination](http://doin.lotsdoin.me/image/english0.png)
+
 CET 6
 -----
 

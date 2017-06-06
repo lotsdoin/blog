@@ -19,9 +19,7 @@ install:
   - chmod +x qrsync
   - sudo cp qrsync /bin
 script:
-  - cd ~
-  - git clone https://github.com/lotsdoin/blog.git
-  - cd blog
+  - cd ~/build/lotsdoin/blog;
   - cat conf.json.in | sed -e "s/QiNiuAK/$QiNiuAK/" | sed -e "s/QiNiuSK/$QiNiuSK/" > conf.json
   - make
   - make sitemap
