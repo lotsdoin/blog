@@ -14,6 +14,7 @@ date: 2017-05-15 18:19:42
 ```
 ## Compete
 
+```text
 自动补全                        `CTRL + N/P`
 整行补全                        `CTRL-X CTRL-L`
 根据当前文件里关键字补全        `CTRL-X CTRL-N`
@@ -26,3 +27,4 @@ date: 2017-05-15 18:19:42
 补全vim命令                     `CTRL-X CTRL-V`
 用户自定义补全方式              `CTRL-X CTRL-U`
 拼写建议                        `CTRL-X CTRL-S` 
+```

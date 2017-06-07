@@ -63,5 +63,5 @@ refs:
 
 #. [zhihu.com][zhihu]
 
-[zhihu]: https://www.zhihu.com/collection/52795525?page=3
+[zhihu]: https://www.zhihu.com/question/50343728
 
