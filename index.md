@@ -25,6 +25,7 @@ after-before: |
 <div style="font-variant:small-caps;" title="日期是挖坑时间。">[Posts](javascript:show()){.naive}</div>
 
 <div class="posts"><!--...-->
+-   2017-06-14 [Windows Softwares](post-0016-windows-softwares.html){title="_posts/post-0016-windows-softwares.md"}
 -   2017-06-06 [Sublime](post-0015-sublime.html){title="_posts/post-0015-sublime.md"}
 -   2017-06-03 [English](post-0014-english.html){title="_posts/post-0014-english.md"}
 -   2017-05-28 [ICPC](post-0012-icpc.html){title="_posts/post-0012-icpc.md"}

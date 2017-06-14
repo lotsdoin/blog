@@ -6,6 +6,118 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1497159733`{.tzx-timestamp} 知识的诅咒
+
+奇普·希思与丹·希思合著的《粘住》一书中提到一种现象，叫“知识的诅咒”，说的是：
+如果我们很熟悉某个对象的话，那么我们会很难想象，在不了解的人的眼中，这个对
+象是什么样子的。
+
+## `1497152154`{.tzx-timestamp} JQuery 的坑
+
+JQuery
+:   * 乱用选择器
+
+        ```js
+        //错误的写法
+        $("#button").click(function(){
+            $('#list li').addClass('strong');
+            $('#list li').css('color', 'red');
+        });
+        //正确的写法
+        $("#button").click(function(){
+            $lis = $('#list li');
+            $lis.addClass('strong');
+            $lis.css('color', 'red');
+        });
+        //更好的写法
+        $("#button").click(function(){
+            $('#list li').addClass('strong').css('color', 'red');
+        });
+        ```
+    * 全局选择效率低
+
+        ```js
+        //错误的写法
+        $(".active").method();
+        //正确的写法
+        var ul = $("#myList");
+        $(".active",ul).method();
+        ```
+    * 复制匿名函数
+
+        ```js
+        //错误的写法
+        $('#myDiv').click( function(){
+           //一些操作
+        });
+        //正确的写法
+        function divClickFn(){
+           //一些操作   
+        }
+        $('#myDiv').click(function(){
+            divClickFn();
+        });
+        ```
+    * 误用ajax 的 complete
+
+        ```js
+        //错误的写法
+        $.ajax({
+          url: "http://tools.42du.cn/jsonp/student/all",
+        }).complete(function( data ) {
+            //一些操作  
+        });
+        //正确的写法
+        $.ajax({
+          url: "http://tools.42du.cn/jsonp/student/all",
+        }).success(function( data ) {
+            //一些操作  
+        });
+        ```
+
+    * 链式调用的误用
+
+        ```js
+        //错误的写法
+        $("#myDiv").click(function(e) {
+          $(this).fadeOut("slow").remove();
+        });
+        //正确的写法
+        $("myDiv").click(function(e){
+          $(this).fadeOut("slow", function(){
+            $(this).remove();
+          });
+        });
+        ```
+
+    * 事件多次绑定
+
+        ```js
+        //避免响应多次执行
+        $("myDiv").unbind("click").bind("click");
+        ```
+
+    * 错误使用 this 指示符
+        + this 指示符存在上下文中，当 this 指向不同的对象。想调用原上下文的 this ，需缓存原 this 对象 ($that = $(this))。
+
+        ```js
+        //错误的写法
+        $( "#myList").click( function() {
+           $(this).method(); 
+           $("#myList li").each( function() {
+              //this并不指向myList
+              $(this).method2(); 
+           })
+        });
+        ```
+
+Ref
+:   * [简书](http://www.jianshu.com/p/1999872efdb3)
+
+## `1496919234`{.tzx-timestamp} 马太效应
+
+凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。
+
 ## `1496239077`{.tzx-timestamp} Install travis
 ```sh
 root@lotsd:~# gem install travis
