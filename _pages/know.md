@@ -8,9 +8,9 @@ Knowledge | 知识
 
 ## `1498107710`{.tzx-timestamp} Git config
 
-#. /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项’--system’ 给 git config，它将明确的读和写这个文件。  
-#. ~/.gitconfig 文件 ：具体到你的用户。你可以通过传递--global 选项使Git 读或写这个特定的文件。
-#. 位于git目录的config文件 (也就是 .git/config) ：无论你当前在用的库是什么，特定指向该单一的库。每个级别重写前一个级别的值。因此，在.git/config中的值覆盖了在/etc/gitconfig中的同一个值。
+#. /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项 ’--system’ 给 git config，它将明确的读和写这个文件。  
+#. ~/.gitconfig 文件 ：具体到你的用户。你可以通过传递 --global 选项使 Git 读或写这个特定的文件。
+#. 位于 git 目录的 config 文件 (也就是 .git/config) ：无论你当前在用的库是什么，特定指向该单一的库。每个级别重写前一个级别的值。因此，在 .git/config 中的值覆盖了在 /etc/gitconfig 中的同一个值。
 #. 在 Windows 中, .gitconfig 在 $HOME 中找到。
 
 ```bash
