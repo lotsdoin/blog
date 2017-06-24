@@ -6,6 +6,51 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1498107710`{.tzx-timestamp} Git config
+
+#. /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项’--system’ 给 git config，它将明确的读和写这个文件。  
+#. ~/.gitconfig 文件 ：具体到你的用户。你可以通过传递--global 选项使Git 读或写这个特定的文件。
+#. 位于git目录的config文件 (也就是 .git/config) ：无论你当前在用的库是什么，特定指向该单一的库。每个级别重写前一个级别的值。因此，在.git/config中的值覆盖了在/etc/gitconfig中的同一个值。
+#. 在 Windows 中, .gitconfig 在 $HOME 中找到。
+
+```bash
+[user]
+	name = lotsdoin
+	email = lotsdoin@gmail.com
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st = status
+    ci = commit
+    br = branch
+    g = git
+    co = checkout
+    spacemacs='cd ~/AppData/Roaming/.emacs.d/'
+    cnpm="npm --registry=https://registry.npm.taobao.org \
+    --cache=$HOME/.npm/.cache/cnpm \
+    --disturl=https://npm.taobao.org/dist \
+    --userconfig=$HOME/.cnpmrc"
+    pantzx="pandoc -S -s -c http://tangzx.qiniudn.com/main.css --ascii --toc \
+    --highlight-style pygments -f markdown+abbreviations+pandoc_title_block+east_asian_line_breaks+emoji --mathjax"
+
+    pan="pandoc -S -s -c _static/main.css --ascii --toc --highlight-style pygments -f markdown+abbreviations+pandoc_title_block+east_asian_line_breaks+emoji --template _static/template.htm --mathjax"
+    #date="date '+%Y-%m-%d %H:%M:%S'"
+    lxss="cd ~/AppData/Local/lxss"
+
+```
+
+## `1497845458`{.tzx-timestamp} 视角
+蔡崇达的《皮囊》中：“肉体是拿来用的。”，对于这句话的理解，仁者见仁智者见智。每个人都可以是布道者，
+或者是受众。
+
+## `1497581447`{.tzx-timestamp} RubyGems SSL
+
+下载 [Rails Installer](http://railsinstaller.org/), 将 [cacert.pem](http://curl.haxx.se/ca/cacert.pem)
+放到 Rails Installer 安装目录下, 添加 cacert.pem 到系统环境变量，设变量名为 SSL_CERT_FILE ，例如我的
+![cacert](http://doin.lotsdoin.me/image/RubyGem.png)
+
+Ref
+:   * [Github](https://gist.github.com/fnichol/867550)
+
 ## `1497159733`{.tzx-timestamp} 知识的诅咒
 
 奇普·希思与丹·希思合著的《粘住》一书中提到一种现象，叫“知识的诅咒”，说的是：

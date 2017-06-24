@@ -45,7 +45,34 @@ Emment
         <span class="span5">span05</span>
         ```
 
-    * 
+    * `section>h2+p*3 + Tab`
+
+        ```html
+        <section>
+            <h2></h2>
+            <p></p>
+            <p></p>
+            <p></p>
+        </section>
+        ```
+    * `ul>li*2.item>h2+img[src="image-$.jpg"] + Tab`
+
+        ```html
+        <ul>
+        <li>
+            <div class="item">
+                <h2></h2>
+                <img src="image-1.jpg" alt="">
+            </div>
+        </li>
+        <li>
+            <div class="item">
+                <h2></h2>
+                <img src="image-2.jpg" alt="">
+            </div>
+        </li>
+        </ul>
+        ```
 
 Useful-tips
 
