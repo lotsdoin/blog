@@ -6,6 +6,32 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1499309008`{.tzx-timestamp} Close the startup voice
+
+```bash
+终端中打
+$ sudo gsettings set com.canonical.unity-greeter play-ready-sound false
+想要开启声音：
+$ gsettings set com.canonical.unity-greeter play-ready-sound true
+
+# 作者：林位廉
+# 链接：https://www.zhihu.com/question/37105834/answer/105061752
+# 来源：知乎
+# 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
+
+## `1499280503`{.tzx-timestamp} Ubuntu install problem
+```bash
+dpkg: 处理软件包 pandoc (--configure)时出错：
+ 现在尚不能配置软件包 pandoc
+ 不能配置(目前状态为 half-installed )
+在处理时有错误发生：
+ pandoc
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+$ sudo apt-get install --reinstall pandoc #stop install when install pandoc,as to cause it.
+```
+
 ## `1498107710`{.tzx-timestamp} Git config
 
 #. /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项 ’--system’ 给 git config，它将明确的读和写这个文件。  

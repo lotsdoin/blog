@@ -6,8 +6,11 @@ date: Tue Jul  4 13:38:56 CST 2017
 Ubuntu 16.04 LST
 ================
 
-Change sources
-----
+Build ubuntu
+------------
+
+### Change sources
+
 `sudo vim /etc/apt/sources.list`
 
 ```bash
@@ -32,9 +35,9 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 ```
 `sudo apt-get update`
 
-## Git
+### Git
 
-```sh
+```bash
 $ sudo apt-get install git
 $ git config --global user.name "lotsdoin"
 $ git config --global user.email "lotsdoin@gmail.com"
@@ -46,16 +49,16 @@ Identity added: /home/lotsd/.ssh/id_rsa (/home/lotsd/.ssh/id_rsa)
 $ ssh -T git@github.com # check it
 ```
 
-## Remove Amazon link
+### Remove Amazon link
 `sudo apt-get remove unity-webapps-common`
 
-## Install Java
+### Install Java
 
-### Install Oracle Java
+#### Install Oracle Java
 
 [Oracle](http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk8-downloads-2133151-zhs.html)
 
-```sh
+```bash
 wget http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz`
 tar -zxvf jdk-8u111-linux-x64.tar.gz
 mkdir /usr/lib/jdk
@@ -74,38 +77,38 @@ source /etc/profile  or  source ~/.bashrc # work now.
 java -version # check it.
 ```
 
-```sh
+```bash
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
 ```
-## Install Sublime Text 3
-```sh
+### Install Sublime Text 3
+```bash
 sudo add-apt-repository ppa:webupd8team/sublime-text-3    
 sudo apt-get update    
 sudo apt-get install sublime-text 
 ```
-## Install axel (like wget)
+### Install axel (like wget)
 
 `sudo apt-get install axel`
 
-## Install CMake and Qt Creator
+### Install CMake and Qt Creator
 `sudo apt-get Install cmake qtcreator`
 
-## Install lnav (review log)
+### Install lnav (review log)
 
 `sudo apt-get Install lnav`
 
-## Install unrar
+### Install unrar
 
 `sudo apt-get Install unrar`
 
-## Ubuntu 16.04 L2TP
+### Ubuntu 16.04 L2TP
 
 long long age,use `sudo apt-get Install l2tp-ipsec-vpn`,but 
 now Ubuntu 16.04 remove it.
 
-```sh
+```bash
 sudo apt install intltool libtool network-manager-dev libnm-util-dev libnm-glib-dev libnm-glib-vpn-dev libnm-gtk-dev libnm-dev libnma-dev ppp-dev libdbus-glib-1-dev libsecret-1-dev libgtk-3-dev libglib2.0-dev xl2tpd strongswan
 
 git clone https://github.com/nm-l2tp/network-manager-l2tp.git    
@@ -138,9 +141,9 @@ sudo make install
 
 IPsec add `Pre-shared key`
 
-## Install YaHeiConsolas
+### Install YaHeiConsolas
 
-```sh
+```bash
 wget http://www.mycode.net.cn/wp-content/uploads/2015/07/YaHeiConsolas.tar.gz
 tar -zxvf YaHeiConsolas.tar.gz
 sudo mkdir -p /usr/share/fonts/vista
@@ -151,41 +154,41 @@ sudo mkfontscale && sudo mkfontdir && sudo fc-cache -fv # refresh and install
 ```
 and download unity-tweak-tool like `sudo apt-get install unity-tweak-tool` change font .
 
-## Flatabulous theme
+### Flatabulous theme
 
-```sh
+```bash
 sudo add-apt-repository ppa:noobslab/themes
 sudo apt-get update
 sudo apt-get install flatabulous-theme
 ```
 and icons
 
-```sh
+```bash
 sudo add-apt-repository ppa:noobslab/icons
 sudo apt-get update
 sudo apt-get install ultra-flat-icons
 ```
 
-## Compile vim by Ubuntu
+### Compile vim by Ubuntu
 
-### Install lib
+#### Install lib
 
-```sh
+```bash
 sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
     python3-dev ruby-dev lua5.1 lua5.1-dev git
 ```
-### Remove old vim
+#### Remove old vim
 
-```sh
+```bash
 dpkg -l | grep vim
 sudo dpkg -p vim vim-common vim-run
 ```
 
-### Download vim and install
+#### Download vim and install
 
-```sh
+```bash
 git clone https://github.com/vim/vim.git
 cd vim
 ./configure --with-features=huge \
@@ -203,17 +206,39 @@ sudo make install
 use `checkinstall` change tool compile by self to `deb` package, it is easy to remove it
 like `sudo dpkg -P vim`.
 
-```sh
+```bash
 sudo apt-get install checkinstall
 cd vim
 sudo checkinstall
 ```
 
-### Set vim as default editor
-```sh
+#### Set vim as default editor
+```bash
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
 sudo update-alternatives --set editor /usr/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 ```
+### Install uGet
 
+```bash
+sudo add-apt-repository ppa:t-tujikawa/ppa 
+sudo apt-get update 
+sudo apt-get install uget 
+```
+
+### Uninstall ppa
+
+```bash
+sudo add-apt-repository --remove ppa:t-tujikawa/ppa
+sudo ppa-purge ppa:t-tujikawa/ppa
+```
+
+Ubuntu tips
+-----------
+
+search
+:   * whereis document
+    * find path -option document
+        + eg: find ~ -name .vimrc
+    * locate document
