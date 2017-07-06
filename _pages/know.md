@@ -6,6 +6,15 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1499310329`{.tzx-timestamp} Git push no input password
+
+Git SSH
+:   * Normal nothing cached, every time you should enter your password.
+    * "cache" mode, remember password in memery by 15 minutes.
+        + `git config --global credential.helper cache`
+    * "store" mode, remember plaintext password in home directory, it is dangerous.
+        + `git config --global credential.helper store --file ~/.my-credentials`
+
 ## `1499309008`{.tzx-timestamp} Close the startup voice
 
 ```bash
