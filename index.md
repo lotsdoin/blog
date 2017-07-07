@@ -26,6 +26,7 @@ after-before: |
 
 <div class="posts"><!--...-->
 -   2017-07-03 [Ubuntu](post-0021-ubuntu.html){title="_posts/post-0021-ubuntu.md"}
+-   2017-06-25 [Shell](post-0017-shell.html){title=_posts/post-0017-shell.md}
 -   2017-06-14 [Windows Softwares](post-0016-windows-softwares.html){title="_posts/post-0016-windows-softwares.md"}
 -   2017-06-06 [Sublime](post-0015-sublime.html){title="_posts/post-0015-sublime.md"}
 -   2017-06-03 [English](post-0014-english.html){title="_posts/post-0014-english.md"}

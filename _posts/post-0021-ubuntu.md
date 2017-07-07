@@ -414,7 +414,7 @@ $ lspci # 驱动信息
 07:00.0 Ethernet controller: Qualcomm Atheros QCA8171 Gigabit Ethernet (rev 10)
 08:00.0 Network controller: Broadcom Corporation BCM43142 802.11b/g/n (rev 01)
 ```
-### Solve the wifi
+### Solve the Wireless
 
 ```bash
 $ sudo apt-get install bcmwl-kernel-source

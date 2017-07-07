@@ -6,6 +6,77 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1499361728`{.tzx-timestamp} Windows Sysinternals update
+[Windows Sysinternals](https://technet.microsoft.com/en-us/sysinternals/bb795535.aspx)包含了很多微软提供的实用工具，
+单独升级麻烦。
+
+```powershell
+function Update-SysinternalsHTTP ($ToolsLocalDir = "c:\temp\sys")  
+{ 
+    if (Test-Path $ToolsLocalDir){ 
+        cd $ToolsLocalDir
+        $DebugPreference = "SilentlyContinue"
+        $wc = new-object System.Net.WebClient
+        $userAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2;)"
+        $wc.Headers.Add("user-agent", $userAgent)
+        $ToolsUrl = "http://live.sysinternals.com/tools"
+        $toolsBlock="<pre>.*</pre>"
+        $WebPageCulture = New-Object System.Globalization.CultureInfo("en-us")
+        $Tools = @{}
+        $ToolsPage = $wc.DownloadString($ToolsUrl)
+        $matches=[string] $ToolsPage |select-string -pattern  "$ToolsBlock" -AllMatches
+        foreach($match in $matches.Matches) {   
+            $txt = ( ($match.Value  -replace "</A><br>", "`r`n") -replace  "<[^>]*?>","")
+            foreach($lines in $txt.Split("`r`n")){
+                $line=$lines|select-string  -NotMatch -Pattern "To Parent|^$|&lt;dir&gt;"
+                if ($line -ne $null){
+                    $date=(([string]$line).substring(0,38)).trimstart(" ") -replace "  "," "
+                    $file=([string]$line).substring(52,(([string]$line).length-52))
+                    $Tools["$file"]= [datetime]::ParseExact($date,"f",$WebPageCulture)
+                }
+            }
+        }
+        $Tools.keys|
+        ForEach-Object {
+            $NeedUpdate=$false
+            if (Test-Path $_)
+            {
+                $SubtractSeconds = New-Object System.TimeSpan 0, 0, 0, ((dir $_).lastWriteTime).second, 0
+                $LocalFileDate= ( (dir $_).lastWriteTime ).Subtract( $SubtractSeconds )
+                $needupdate=(($tools[$_]).touniversaltime() -lt $LocalFileDate.touniversaltime())
+            } else {$NeedUpdate=$true}
+            if ( $NeedUpdate ) 
+            {
+                Try {
+                        $wc.DownloadFile("$ToolsUrl/$_","$ToolsLocalDir\$_" )
+                        $f=dir "$ToolsLocalDir\$_"
+                        $f.lastWriteTime=($tools[$_])
+                        "Updated $_"
+                    }
+                catch { Write-debug "发生错误: $_" }
+            } 
+        } 
+    }
+}
+cls
+"更新开始..."
+Update-Sysinternalshttp -ToolsLocalDir "D:\Tools"
+"更新结束"
+```
+将脚本保存为`.psl`后缀的文件，使用 PowerShell 运行。注意路径`D:\Tools`,代码其实是到
+[live.sysinternals](http://live.sysinternals.com/tools) 比对文件信息进行更新。
+
+ref
+:   * http://www.mycode.net.cn/tools/1629.html
+
+## `1499333837`{.tzx-timestamp} 管理源码安装
+
+```bash
+$ sudo make install
+# change it to follow order
+$ sudo checkinstall
+```
+
 ## `1499310329`{.tzx-timestamp} Git push no input password
 
 Git SSH
@@ -199,7 +270,7 @@ Ref
 凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。
 
 ## `1496239077`{.tzx-timestamp} Install travis
-```sh
+```bash
 root@lotsd:~# gem install travis
 Building native extensions.  This could take a while...
 ERROR:  Error installing travis:
@@ -218,7 +289,7 @@ root@lotsd:~# apt-get install ruby-dev # It can fix
 ```
 
 ## `1496230157`{.tzx-timestamp} Github pages DNS
-```sh
+```bash
 $ dig YOUT-USERNAME.github.io +noall +answer
 > YOUR-USERNAME.github.io 3600    IN  A  199.27.XX.XXX
 ```
@@ -239,7 +310,7 @@ Time Standards
 
 ## `1494849129`{.tzx-timestamp} Unix timestramp
 
-```sh
+```bash
 order: date +%s
 out: 1494723178
 order: date '+%Y-%m-%d %H:%M:%S'
@@ -252,7 +323,7 @@ out: 2017-05-14 08:52:58
 
 ## `1494723178`{.tzx-timestamp} Windows 端口
 
-```sh
+```bash
 C:>netstat -aon|findstr "80"
 C:>tasklist|findstr "2004"
 C:>taskkill /im javaw.exe
@@ -262,7 +333,7 @@ C:>netstat -na|grep ESTABLISHED|wc -l #建立的连接数
 ```
 Taskkill
 
-```sh
+```bash
 TASKKILL /IM notepad.exe
 TASKKILL /PID 1230 /PID 1241 /PID 1253 /T
 TASKKILL /F /IM cmd.exe /T
