@@ -35,6 +35,28 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 ```
 `sudo apt-get update`
 
+### Why to install in ubuntu
+```bash
+$ sudo apt-get install package-name -y # 默认为 yes
+# deb 包安装 & 卸载
+$ sudo dpkg -i xxx.deb
+$ sudo apt-get install -f # 安装依赖
+$ sudo apt-get autoclean
+$ sudo apt-get autoremove
+$ sudo apt-get remove --purge package-name # 完全卸载
+$ sudo apt-get install ./xxx.deb
+# 常见解压文件命令
+$ *.tar               : tar -xvf
+$ *.gz                : gzip -d or gunzip
+$ *.tar.gz or *.tgz   : tar -xzf
+$ *.bz2               : bzip2 -d or bunzip2
+$ *.tar.bz2           : tar -xjf
+$ *.Z                 : uncompress
+$ *.tar.Z             : tar -xZf
+$ *.rar               : unrar e
+$ *.zip               : unzip
+```
+
 ### Git
 
 ```bash
@@ -233,6 +255,135 @@ sudo apt-get install uget
 sudo add-apt-repository --remove ppa:t-tujikawa/ppa
 sudo ppa-purge ppa:t-tujikawa/ppa
 ```
+### Install wine
+
+```bash
+1、安装源
+      sudo add-apt-repository ppa:wine/wine-builds
+      sudo apt-get update
+2、安装wine
+     sudo apt-get install --install-recommends wine-staging
+     sudo apt-get install winehq-staging
+3、卸载wine
+     1).卸载wine主程序，在终端里输入：
+       sudo apt-get remove --purge wine
+     2).然后删除wine的目录文件：
+       rm -r ~/.wine
+     3).卸载残留不用的软件包：
+       sudo apt-get autoremove
+```
+### Install pptp vpn server
+
+You can configure pptp VPN server and client from the terminal using these steps:
+VPN Server Setup:
+
+Install and update the VPN server and client packages:
+
+`$ sudo apt-get install pptpd ppp pptp-linux`
+
+Four files has to be configured for the server:
+
+    /etc/pptpd.conf
+    /etc/ppp/pptpd-options
+    /etc/ppp/options
+    /etc/chat-secrets)
+
+/etc/pptpd.conf:
+
+option /etc/ppp/pptpd-options
+logwtmp
+localip 192.168.23.20
+remoteip 192.168.23.30-39
+
+/etc/ppp/pptpd-options:
+
+name pptpd
+refuse-pap
+refuse-chap
+refuse-mschap
+require-mschap-v2
+require-mppe-128
+proxyarp
+nodefaultroute
+lock
+nobsdcomp
+noipx ## you don’t need IPX
+mtu 1490 ## may help your linux client from disconnecting
+mru 1490 ## may help your linux client from disconnecting
+
+/etc/ppp/options:
+
+lock
+
+/etc/ppp/chap-secrets:
+
+| # Secrets for authentication using CHAP
+| # client    server  secret  IP addresses
+
+[username]  pptpd [userpass] *
+
+(The [username] and [userpass] are entries without the brackets.)
+
+Now restart the server with:
+
+$ sudo service pptpd restart
+
+VPN Client Setup:
+
+Four configuration files are involved:
+
+    /etc/ppp/peers/myvpn
+    /etc/ppp/options.pptp
+    /etc/ppp/chap-secrets
+    /etc/ppp/ip-up.local
+
+/etc/ppp/peers/myvpn:
+
+| # replace the bracket paramters with the host name of the VPN server and VPN user
+remotename myvpn
+linkname myvpn
+ipparam myvpn
+pty "pptp [vpn server] --nolaunchpppd "
+name [username]
+usepeerdns
+require-mppe
+refuse-eap
+noauth
+
+| # adopt defaults from the pptp-linux package
+file /etc/ppp/options.pptp
+
+/etc/ppp/options.pptp:
+
+lock
+noauth
+refuse-pap
+refuse-eap
+refuse-chap
+refuse-mschap
+nobsdcomp
+nodeflate
+
+/etc/ppp/chap-secrets:
+
+| # Secrets for authentication using CHAP
+| # client    server  secret  IP addresses
+username myvpn password *
+
+/etc/ppp/ip-up.local:
+
+| #!/bin/sh
+network=`echo $IPREMOTE | awk -F\. '{print $1"."$2"."$3".0/24"}'`
+route add -net $network $IFNAME
+
+Connect the VPN client with:
+
+$ sudo pon myvpn
+
+End the VPN connection with:
+
+$ sudo poff myvpn
+
 
 Ubuntu tips
 -----------
@@ -242,3 +393,36 @@ search
     * find path -option document
         + eg: find ~ -name .vimrc
     * locate document
+
+```bash
+$ lspci # 驱动信息
+00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor DRAM Controller (rev 06)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)
+00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor Integrated Graphics Controller (rev 06)
+00:03.0 Audio device: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller (rev 06)
+00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)
+00:16.0 Communication controller: Intel Corporation 8 Series/C220 Series Chipset Family MEI Controller #1 (rev 04)
+00:1a.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #2 (rev 05)
+00:1b.0 Audio device: Intel Corporation 8 Series/C220 Series Chipset High Definition Audio Controller (rev 05)
+00:1c.0 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #4 (rev d5)
+00:1c.4 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #5 (rev d5)
+00:1d.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #1 (rev 05)
+00:1f.0 ISA bridge: Intel Corporation HM86 Express LPC Controller (rev 05)
+00:1f.2 SATA controller: Intel Corporation 8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode] (rev 05)
+00:1f.3 SMBus: Intel Corporation 8 Series/C220 Series Chipset Family SMBus Controller (rev 05)
+01:00.0 3D controller: NVIDIA Corporation GM107M [GeForce GTX 850M] (rev a2)
+07:00.0 Ethernet controller: Qualcomm Atheros QCA8171 Gigabit Ethernet (rev 10)
+08:00.0 Network controller: Broadcom Corporation BCM43142 802.11b/g/n (rev 01)
+```
+### Solve the wifi
+
+```bash
+$ sudo apt-get install bcmwl-kernel-source
+$ 无线网卡是BCM4312 802.11b/g
+# 以下是我的网卡信息以及网卡安装
+08:00.0 Network controller: Broadcom Corporation BCM43142 802.11b/g/n (rev 01)
+$ sudo apt-get install Linux-headers$(uname -r | grep -Po "\-[a-z].*")
+$ sudo apt-get install build-essential dkms
+$ sudo apt-get install dpkg
+$ sudo apt-get install bcmwl-kernel-source
+```
