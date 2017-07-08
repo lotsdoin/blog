@@ -35,7 +35,7 @@ Install 依赖
 $ sudo apt-get install build-essential cmake
 $ sudo apt-get install python-dev python3-dev
 ```
-Instal YouCompleteMe repo
+Install YouCompleteMe repo
 -------------------------
 
 use PluginInstall install YCM, or `sudo git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/`
