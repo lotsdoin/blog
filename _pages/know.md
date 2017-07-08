@@ -67,7 +67,7 @@ Update-Sysinternalshttp -ToolsLocalDir "D:\Tools"
 [live.sysinternals](http://live.sysinternals.com/tools) 比对文件信息进行更新。
 
 ref
-:   * http://www.mycode.net.cn/tools/1629.html
+:   * [www.mycode.net.cn](http://www.mycode.net.cn/tools/1629.html)
 
 ## `1499333837`{.tzx-timestamp} 管理源码安装
 
@@ -85,6 +85,15 @@ Git SSH
         + `git config --global credential.helper cache`
     * "store" mode, remember plaintext password in home directory, it is dangerous.
         + `git config --global credential.helper store --file ~/.my-credentials`
+
+```bash
+$ sudo vim ~/.git-credentials
+add follow things but no {}
+https://{username}:{password}@github.com
+$ sudo git config --global credential.helper store
+then ~/.gitconfig will add
+helper = store
+```
 
 ## `1499309008`{.tzx-timestamp} Close the startup voice
 
