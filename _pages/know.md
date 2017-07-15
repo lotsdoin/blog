@@ -6,6 +6,216 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1500099669`{.tzx-timestamp} 
+
+
+## `1499830713`{.tzx-timestamp} Linux sublime-text 中文输入
+系统: ubuntu 16.04 LTS
+fcitx version: 4.2.9.1
+Sublime Text: Stable Channel,Build 3126
+1. 保存以下代码为 sublime-imfix.c
+```cpp
+/*
+sublime-imfix.c
+Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.
+By Cjacker Huang
+
+gcc -shared -o libsublime-imfix.so sublime-imfix.c `pkg-config --libs --cflags gtk+-2.0` -fPIC
+LD_PRELOAD=./libsublime-imfix.so subl
+*/
+#include <gtk/gtk.h>
+#include <gdk/gdkx.h>
+typedef GdkSegment GdkRegionBox;
+
+struct _GdkRegion
+{
+  long size;
+  long numRects;
+  GdkRegionBox *rects;
+  GdkRegionBox extents;
+};
+
+GtkIMContext *local_context;
+
+void
+gdk_region_get_clipbox (const GdkRegion *region,
+            GdkRectangle    *rectangle)
+{
+  g_return_if_fail (region != NULL);
+  g_return_if_fail (rectangle != NULL);
+
+  rectangle->x = region->extents.x1;
+  rectangle->y = region->extents.y1;
+  rectangle->width = region->extents.x2 - region->extents.x1;
+  rectangle->height = region->extents.y2 - region->extents.y1;
+  GdkRectangle rect;
+  rect.x = rectangle->x;
+  rect.y = rectangle->y;
+  rect.width = 0;
+  rect.height = rectangle->height;
+  //The caret width is 2;
+  //Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.
+  if(rectangle->width == 2 && GTK_IS_IM_CONTEXT(local_context)) {
+        gtk_im_context_set_cursor_location(local_context, rectangle);
+  }
+}
+
+//this is needed, for example, if you input something in file dialog and return back the edit area
+//context will lost, so here we set it again.
+
+static GdkFilterReturn event_filter (GdkXEvent *xevent, GdkEvent *event, gpointer im_context)
+{
+    XEvent *xev = (XEvent *)xevent;
+    if(xev->type == KeyRelease && GTK_IS_IM_CONTEXT(im_context)) {
+       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),"window");
+       if(GDK_IS_WINDOW(win))
+         gtk_im_context_set_client_window(im_context, win);
+    }
+    return GDK_FILTER_CONTINUE;
+}
+
+void gtk_im_context_set_client_window (GtkIMContext *context,
+          GdkWindow    *window)
+{
+  GtkIMContextClass *klass;
+  g_return_if_fail (GTK_IS_IM_CONTEXT (context));
+  klass = GTK_IM_CONTEXT_GET_CLASS (context);
+  if (klass->set_client_window)
+    klass->set_client_window (context, window);
+
+  if(!GDK_IS_WINDOW (window))
+    return;
+  g_object_set_data(G_OBJECT(context),"window",window);
+  int width = gdk_window_get_width(window);
+  int height = gdk_window_get_height(window);
+  if(width != 0 && height !=0) {
+    gtk_im_context_focus_in(context);
+    local_context = context;
+  }
+  gdk_window_add_filter (window, event_filter, context);
+}
+```
+2. 安装编译环境
+```bash
+sudo apt-get install build-essential
+sudo apt-get install libgtk2.0-dev
+```
+3. 编译共享库
+```bash
+gcc -shared -o libsublime-imfix.so sublime-imfix.c `pkg-config --libs --cflags gtk+-2.0` -fPIC
+```
+4. 设置 LD_PRELOAD 并启动 Sublime Text
+```bash
+LD_PRELOAD=./libsublime-imfix.so subl
+```
+5. 修改 /usr/share/applications/sublime-text.desktop
+
+```txt
+[Desktop Entry]
+[...]
+Exec=env LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so /opt/sublime_text/sublime_text %F
+[...]
+
+[Desktop Action Window]
+[...]
+Exec=env LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so /opt/sublime_text/sublime_text -n
+[...]
+
+[Desktop Action Document]
+[...]
+Exec=env LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so /opt/sublime_text/sublime_text --command new_file
+[...]
+```
+6. 将 libsublime-imfix.so 放到 /opt/sublime_text/
+7. 修改 /usr/bin/subl
+
+```bash
+#!/bin/sh
+export LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so
+exec /opt/sublime_text/sublime_text "$@"
+```
+8. Reboot your computer.
+
+ref
+:   * [SinoSky](https://www.sinosky.org/linux-sublime-text-fcitx.html)
+
+## `1499650590`{.tzx-timestamp} Install youdao-dict in ubuntu
+```bash
+$ wget http://codown.youdao.com/cidian/linux/youdao-dict_1.1.0-0-ubuntu_amd64.deb
+$ sudo dkpg -i youdao-dict_1.1.0-0-ubuntu_amd64.deb
+$ sudo apt-get install python3-pyqt5
+$ sudo apt-get -f install
+$ sudo apt-get install tesseract-ocr
+# warning: gstreamer0.10-plugins-ugly you have not install
+$ dpkg -X ./youdao-dict_1.1.0-0-ubuntu_amd64.deb youdao
+$ dpkg -e ./youdao-dict_1.1.0-0-ubuntu_amd64.deb youdao/DEBIAN
+$ cd youdao/DEBIAN
+$ vim control # remove gstreamer0.10-plugins-ugly
+$ dpkg-deb -b youdao youdao.deb # rebuild package
+$ sudo dpkg -i youdao.deb
+# from http://blog.csdn.net/brad1994/article/details/56484634
+```
+
+## `1499594613`{.tzx-timestamp} Ubuntu XTerm 中文
+```bash
+$ sudo vim /etc/X11/app-defaults/XTerm
+add
+
+!Add in [17:09:19@2017:07:09] from http://huanglianjing0.blog.163.com/blog/static/733932222013101811225548/
+
+Xft.dpi:96     
+    xpdf.title: PDF     
+    XTerm*faceSize: 10     
+    XTerm*faceSize1: 10     
+    XTerm*faceSize2: 10     
+    XTerm*faceSize3: 10     
+    XTerm*faceSize4: 10     
+    XTerm*faceSize5: 10     
+    XTerm*faceSize6: 10     
+    XTerm*jumpScroll: true     
+        
+    xterm.termName: xterm-256color    
+    xterm.geometry: 80x24    
+    xterm*scrollBar: false    
+    xterm*rightScrollBar: true    
+    xterm*loginshell: true    
+    xterm*cursorBlink: true    
+    xterm*background:   black    
+    xterm*foreground:   gray    
+    xterm.borderLess: true    
+    xterm.cursorBlink: true    
+    xterm*colorUL: yellow    
+    xterm*colorBD: white    
+         
+    !fix alt key input    
+    xterm*eightBitInput: false    
+    xterm*altSendsEscape: true   
+      
+    !mouse selecting to copy, ctrl-v to paste    
+    !Ctrl p to print screen content to file    
+    XTerm*VT100.Translations: #override \    
+          Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\    
+          <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\    
+          Ctrl <KeyPress> P: print() \n    
+        
+    !font and locale    
+    !xterm*locale: true    
+    !xterm.utf8: true    
+    !xterm*utf8Title: true  
+    xterm*fontMenu*fontdefault*Label: Default    
+    xterm*faceName:Monaco:antialias=True:pixelsize=12
+    !xterm*faceName: Monaco:antialias=True:pixelsize=12
+    xter*boldFont: Monaco:style=Bold:pixelsize=12
+    !SimHei 是中文字体
+    xterm*faceNameDoublesize:SimHei:antialias=True:pixelsize=12
+    xterm*xftAntialias: true    
+    xterm.cjkWidth:true    
+    !输入法设置 fcitx
+    XTerm*inputMethod: fcitx   
+    XTerm*preeditType: Root
+```
+
+
 ## `1499361728`{.tzx-timestamp} Windows Sysinternals update
 [Windows Sysinternals](https://technet.microsoft.com/en-us/sysinternals/bb795535.aspx)包含了很多微软提供的实用工具，
 单独升级麻烦。
@@ -107,6 +317,11 @@ $ gsettings set com.canonical.unity-greeter play-ready-sound true
 # 链接：https://www.zhihu.com/question/37105834/answer/105061752
 # 来源：知乎
 # 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+# 以上试验了不行
+$ cd /usr/share/sounds/ubuntu/stereo/
+$ mv system-ready.ogg system-ready.bak.ogg
+$ touch system-ready.ogg
 ```
 
 ## `1499280503`{.tzx-timestamp} Ubuntu install problem

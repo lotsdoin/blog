@@ -64,7 +64,7 @@ Bash
         value2 = "font.com"
         if [ "$value1" = "$value2" ]
         ```
-    * 用 $(command) 而不是老旧的 command 来替换
+    * 用 `$(command)` 而不是老旧的 `command` 来替换
         ```bash
         user = 'echo "$UID"'
         user = $(echo "$UID")
@@ -84,9 +84,4 @@ Bash
 ref
 :   * [伯乐在线](http://blog.jobbole.com/111514/)
 
-Sort your frquent order:
-
-```bash
-history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
-```
 

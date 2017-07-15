@@ -22,3 +22,5 @@ Links | 链接
 #. [Google-4](https://c.ggkai.men)
 #. [YeGoogle](http://www.yegoogle.com)
 #. [虫部落](http://www.chongbuluo.com/)
+#. [tamapolis : Javi Agenjo's personal blog](http://www.tamats.com/blog/)
+#. [TabMixPlus](https://bitbucket.org/onemen/tabmixplus)
