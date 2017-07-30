@@ -35,6 +35,9 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 ```
 `sudo apt-get update`
 
+`or`
+choose `http://mirrors.aliyun.com/ubuntu` in `system seting / software and update`
+
 ### How to install in ubuntu
 ```bash
 $ sudo apt-get install package-name -y # 默认为 yes
@@ -55,6 +58,14 @@ $ *.Z                 : uncompress
 $ *.tar.Z             : tar -xZf
 $ *.rar               : unrar e
 $ *.zip               : unzip
+```
+
+### Install Albert
+```bash
+$ sudo add-apt-repository ppa:nilarimogard/webupd8
+$ sudo apt-get update
+$ sudo apt-get install albert
+
 ```
 
 ### Git
@@ -461,6 +472,11 @@ $ sudo apt-get install build-essential dkms
 $ sudo apt-get install dpkg
 $ sudo apt-get install bcmwl-kernel-source
 ```
+### 添加开机自启动
+```bash
+$ sudo gnome-session-properties
+```
+
 ### Ubuntu 目录结构
 |  /bin: bin是Binary的缩写。存放系统中最常用的可执行文件（二进制）。
 | /boot: 这里存放的是Linux内核和系统启动文件，包括Grub、lilo启动器程序。

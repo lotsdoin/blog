@@ -6,8 +6,20 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
-## `1500099669`{.tzx-timestamp} 
+## `1500207047`{.tzx-timestamp} Dia 中文
+```bash
+$ sudo vim /usr/bin/dia
+# change
+# dia-normal --integrated "$@"
+dia-normal "$@"
+```
 
+## `1500099669`{.tzx-timestamp} 公式
+The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
 
 ## `1499830713`{.tzx-timestamp} Linux sublime-text 中文输入
 系统: ubuntu 16.04 LTS
@@ -369,7 +381,7 @@ $ sudo apt-get install --reinstall pandoc #stop install when install pandoc,as t
 ```
 
 ## `1497845458`{.tzx-timestamp} 视角
-蔡崇达的《皮囊》中：“肉体是拿来用的。”，对于这句话的理解，仁者见仁智者见智。每个人都可以是布道者，
+蔡崇达的《皮囊》中：“肉体是拿来用的。”，将肉体和意识独立出来理解，对于这句话的理解，仁者见仁智者见智。每个人都可以是布道者，
 或者是受众。
 
 ## `1497581447`{.tzx-timestamp} RubyGems SSL
