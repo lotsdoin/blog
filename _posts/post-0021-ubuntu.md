@@ -259,6 +259,7 @@ sudo dpkg -p vim vim-common vim-run
 ```bash
 git clone https://github.com/vim/vim.git
 cd vim
+# complie with python2
 ./configure --with-features=huge \
             --enable-multibyte \
             --enable-rubyinterp \
@@ -267,6 +268,17 @@ cd vim
             --enable-perlinterp \
             --enable-luainterp \
             --enable-gui=gtk2 --enable-cscope --prefix=/usr
+
+# complie with python3
+./configure --with-features=huge \
+            --enable-multibyte \
+            --enable-rubyinterp \
+            --enable-python3interp \
+            --with-python-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
+            --enable-perlinterp \
+            --enable-luainterp \
+            --enable-gui=gtk2 --enable-cscope --prefix=/usr
+
 make VIMRUNTIMEDIR=/usr/share/vim/vim80
 sudo make install
 ```

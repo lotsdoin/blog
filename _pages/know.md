@@ -6,6 +6,116 @@ date: 2017-05-02
 Knowledge | 知识
 ================
 
+## `1509958848`{.tzx-timestamp} linux png to jpg
+```
+$ parallel convert '{}' '{.}.jpg' ::: *.png
+$ ls -1 *.png | parallel convert '{}' '{.}.jpg'
+$ bash -c 'for image in *.png; do convert "$image" "${image%.png}.jpg"; echo “image $image converted to ${image%.png}.jpg ”; done'
+$ chmod +x convent.sh
+$ ./convent.sh
+# #!/bin/bash
+# #convert
+# for image in *.png; do
+# convert "$image" "${image%.png}.jpg"
+# echo “image $image converted to ${image%.png}.jpg ”
+# done
+# exit 0
+```
+
+## `1509958146`{.tzx-timestamp} gbk to utf8
+```
+iconv -f gbk -t utf8 filename
+```
+
+## `1507733250`{.tzx-timestamp} 网页可编辑
+```console
+document.body.contentEditable='true';
+```
+
+## `1507469098`{.tzx-timestamp} linux unzip encoding problem
+```bash
+apt-get install p7zip-full
+```
+
+## `1507358006`{.tzx-timestamp} linux process management
+```bash
+$ ps -ef|grep firefox
+$ ps -aux|grep dpkg
+$ kill -s 9 PID
+$ pgrep firefox
+$ pidof firefox-bin
+$ pgrep firefox|chrome kill -s 9 # the PID of firefox and chrome are parameter of `kill -s 9`
+$ kill -s 9 `pgrep firefox`
+$ pkill -9 firefox 
+$ killall -9 firefox
+```
+ref:
+(http://blog.csdn.net/andy572633/article/details/7211546)
+
+## `1506838634`{.tzx-timestamp} python wrong
+python 模块名不能和自己写的代码的文件名一样
+
+wordcloud.py:
+
+```python
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+import jieba
+
+text_from_file_with_apath = open('quotes.json').read()
+
+wordlist_after_jieba = jieba.cut(text_from_file_with_apath, cut_all = True)
+wl_space_split = " ".join(wordlist_after_jieba)
+
+my_wordcloud = WordCloud().generate(wl_space_split)
+
+plt.imshow(my_wordcloud)
+plt.axis("off")
+plt.show()
+```
+会报错：ImportError: cannot import name WordCloud
+将文件名从 wordcloud.py 改为 wordcloudjob.py 不报错。
+
+## `1506503212`{.tzx-timestamp} 解决卷 boot 仅剩余 0 字节的硬盘空间
+```
+# check now linux version
+$ uname -a
+# list all linux kennel version you have
+$ sudo dpkg --get-selections | grep linux-image
+# delete no used linux kennel version
+$ sudo apt-get purge linux-image-4.4.0-65-generic
+# view previous space of boot, df
+sudo dpkg --get-selections | grep linux-image
+# you find the linux-image you delete have the symbol deinstall you can
+$ sudo dpkg -P linux-image-extra-4.4.40-65-generic
+```
+
+## `1506331009`{.tzx-timestamp} 解决 PIP 下载速度慢
+
+Linux:
+
+修改 ~/.pip/pip.conf ,没有则建。
+```bash
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
+```
+
+| 新版 ubuntu 要求使用 https 源，要注意。
+| 清华：https://pypi.tuna.tsinghua.edu.cn/simple
+| 阿里云：http://mirrors.aliyun.com/pypi/simple/
+| 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+| 华中理工大学：http://pypi.hustunique.com/
+| 山东理工大学：http://pypi.sdutlinux.org/ 
+| 豆瓣：http://pypi.douban.com/simple/
+
+## `1506250779`{.tzx-timestamp} 安装 Windows C:/ 无法格式化
+修复问题键
+```bash
+convert c:/fs:ntfs /v
+```
+
 ## `1500207047`{.tzx-timestamp} Dia 中文
 ```bash
 $ sudo vim /usr/bin/dia
